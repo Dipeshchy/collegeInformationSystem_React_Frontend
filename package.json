@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "bootstrap-icons": "^1.0.0-alpha3",
     "formik": "^2.1.4",
     "jquery": "^3.4.1",
     "react": "^16.13.1",
@@ -17,6 +18,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "thunk": "^0.0.1",
     "yup": "^0.28.3"
   },
