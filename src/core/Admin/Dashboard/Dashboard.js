@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
    
     return (
       <React.Fragment>
-        <Navbar fullName="Man Bist" />
+        <Navbar />
 
         <div class="container-fluid">
           <div class="row">

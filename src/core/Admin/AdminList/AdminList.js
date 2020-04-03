@@ -7,7 +7,7 @@ class AdminList extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Navbar fullName="Man Bist" />
+                <Navbar />
                 <div class="container-fluid">
                     <div class="row">
                         <Sidebar />

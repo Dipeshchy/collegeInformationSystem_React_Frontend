@@ -6,6 +6,7 @@ import Login from './core/Admin/Login/Login';
 import NotFound from './core/NotFound/NotFound';
 import Dashboard from './core/Admin/Dashboard/Dashboard';
 import AdminList from './core/Admin/AdminList/AdminList';
+import AdminAdd from './core/Admin/AdminList/AdminAdd';
 
 function App(props) {
   return (
@@ -15,6 +16,7 @@ function App(props) {
           <Route exact path="/login" component={Login} />
           <Route exact path="/admin/dashboard" component={Dashboard} />
           <Route exact path="/admin/adminlist" component={AdminList} />
+          <Route exact path="/admin/adminlist/add" component={AdminAdd} />
           <Route component={NotFound} />
         </Switch>
       </Router>

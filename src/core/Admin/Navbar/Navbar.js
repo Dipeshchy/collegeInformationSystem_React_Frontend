@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navbar = ({ fullName }) => {
+const Navbar = () => {
     return (
         <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
@@ -18,7 +18,7 @@ const Navbar = ({ fullName }) => {
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <span className="nav-link">{fullName}</span>
+                        <span className="nav-link">Man Bahadur</span>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="#">Log Out</a>
