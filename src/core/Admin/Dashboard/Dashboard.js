@@ -24,8 +24,8 @@ class Dashboard extends React.Component {
       <React.Fragment>
         <Navbar />
 
-        <div class="container-fluid">
-          <div class="row">
+        <div className="container-fluid">
+          <div className="row">
             <Sidebar />
             <div style={{marginTop: '100px'}} className="col-md-10">
               <DashboardBody />

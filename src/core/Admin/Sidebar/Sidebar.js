@@ -12,9 +12,9 @@ class Sidebar extends React.Component {
             fontSize: '18px'
         }
         return (
-            <nav class="mt-5 col-md-2 d-none d-md-block bg-light sidebar">
-                <div class="sidebar-sticky">
-                    <ul class="mt-5 list-group nav flex-column">
+            <nav className="mt-5 col-md-2 d-none d-md-block bg-light sidebar">
+                <div className="sidebar-sticky">
+                    <ul className="mt-5 list-group nav flex-column">
                         <li className="list-group-item">
                             <Link to="/admin/dashboard" style={linkStyles}>
                                 Dashboard
@@ -27,14 +27,14 @@ class Sidebar extends React.Component {
   </Link>
                         </li>
                         <li className="list-group-item">
-                            <a href="#" style={linkStyles}>
+                            <Link to="/admin/university" style={linkStyles}>
                                 Universities
-  </a>
+  </Link>
                         </li>
                         <li className="list-group-item">
-                            <a href="#" style={linkStyles}>
+                            <Link to="/admin/college" style={linkStyles}>
                                 Colleges
-  </a>
+  </Link>
                         </li>
                     </ul>
                 </div>

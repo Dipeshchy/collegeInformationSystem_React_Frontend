@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import axios from 'axios';
 
-class AdminAdd extends React.Component {
+class AdminEdit extends React.Component {
 
     state = {
         message: null,
@@ -45,18 +45,18 @@ class AdminAdd extends React.Component {
         return (
             <React.Fragment>
                 <Navbar />
-                <div className="container-fluid">
-                    <div className="row">
+                <div class="container-fluid">
+                    <div class="row">
                         <Sidebar />
                         <div style={{ marginTop: '100px' }} className="col-md-10">
                             <div className="card">
-                                <div className="card-header"> Admin</div>
+                                <div className="card-header"> Edit Admin</div>
                                 <div className="card-body">
-                                    <div className="ml-1 mr-1 mb-2 d-flex">
+                                    <div class="ml-1 mr-1 mb-2 d-flex">
                                         <div>
-                                            <h5>Add Admin</h5>
+                                            <h5>Edit Admin</h5>
                                         </div>
-                                        <div className="ml-auto">
+                                        <div class="ml-auto">
                                             <button
                                                 onClick={this.props.history.goBack}
                                                 className="btn btn-outline-secondary">
@@ -210,5 +210,5 @@ class AdminAdd extends React.Component {
     }
 }
 
-export default withRouter(AdminAdd);
+export default withRouter(AdminEdit);
 

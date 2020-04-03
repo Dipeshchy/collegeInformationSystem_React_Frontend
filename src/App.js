@@ -7,6 +7,7 @@ import NotFound from './core/NotFound/NotFound';
 import Dashboard from './core/Admin/Dashboard/Dashboard';
 import AdminList from './core/Admin/AdminList/AdminList';
 import AdminAdd from './core/Admin/AdminList/AdminAdd';
+import "bootstrap/js/dist/modal";
 
 function App(props) {
   return (

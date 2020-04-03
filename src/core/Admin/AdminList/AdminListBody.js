@@ -3,19 +3,21 @@ import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom';
 import customStyles from '../components/table/customStyles';
 import axios from 'axios';
+import Modal from '../components/Modal';
+import $ from 'jquery';
 
 class AdminListBody extends React.Component {
     state = {
         loading: true,
         message: null,
         msgStatus: 'success',
-        adminList: []
+        adminList: [],
+        selectedId: null
     }
 
     componentDidMount() {
         axios.get('http://localhost:8080/api/admin')
             .then(res => {
-                console.log(res)
                 if (res.status === 200) {
                     this.setState({
                         adminList: res.data,
@@ -29,6 +31,36 @@ class AdminListBody extends React.Component {
                     })
                 }
             }).catch(er => console.log(er))
+    }
+
+    deleteAdmin = id => {
+        if (id) {
+            axios.delete(`http://localhost:8080/api/admin/${id}`)
+                .then(res => {
+                    if (res.data === 'success') {
+                        let newAdminList = this.state.adminList.filter(admin => id !== admin.id)
+                        $('#deleteAdminModal').modal('hide');
+                        this.setState({
+                            adminList: newAdminList,
+                            selectedId: null,
+                            message: 'Admin Deleted Successfully',
+                            loading: false
+                        }, () => {
+                            setTimeout(() => this.setState({ message: null }), 3000)
+                        })
+                    } else {
+                        $('#deleteAdminModal').modal('hide');
+                        this.setState({
+                            selectedId: null,
+                            message: 'Admin Delete Failed',
+                            msgStatus: 'danger',
+                            loading: false
+                        }, () => {
+                            setTimeout(() => this.setState({ message: null }), 3000)
+                        })
+                    }
+                }).catch(er => console.log(er))
+        }
     }
     render() {
         const { adminList, message, msgStatus, loading } = this.state;
@@ -51,20 +83,23 @@ class AdminListBody extends React.Component {
                 width: '500px',
                 sortable: true
             },
+            // {
+            //     name: 'Edit',
+            //     cell: row =>
+            //         <Link
+            //             to={{ pathname: `/admin/adminlist/edit/${row.id}` }}
+            //             className='btn btn-sm btn-outline-primary'>
+            //             Edit
+            //         </Link>,
+            //     right: true,
+            // },
             {
-                name: 'Edit',
-                cell: row =>
-                    <Link
-                        to={{ pathname: `/admin/adminlist/edit/${row.id}` }}
-                        className='btn btn-sm btn-outline-primary'>
-                        Edit
-                    </Link>,
-                right: true,
-            },
-            {
-                name: 'Delete',
+                name: 'Action',
                 cell: row =>
                     <button
+                        data-toggle="modal"
+                        data-target="#deleteAdminModal"
+                        onClick={() => this.setState({ selectedId: row.id })}
                         className='btn btn-sm btn-outline-danger'>
                         Delete
                     </button>,
@@ -86,11 +121,11 @@ class AdminListBody extends React.Component {
             <div className="card">
                 <div className="card-header">Admin</div>
                 <div className="card-body">
-                    <div class="ml-1 mr-1 mb-2 d-flex">
+                    <div className="ml-1 mr-1 mb-2 d-flex">
                         <div>
                             <h5>Admin List</h5>
                         </div>
-                        <div class="ml-auto">
+                        <div className="ml-auto">
                             <Link
                                 to="/admin/adminlist/add"
                                 className="btn btn-outline-success">
@@ -98,12 +133,12 @@ class AdminListBody extends React.Component {
                             </Link>
                         </div>
                     </div>
-                       {message &&
-                       <div className={`mb-2 col-md-4 text-center alert alert-${msgStatus}`}>
-                                {message}
-                            </div>
-                         } 
-                    <div className="card">
+                    {message &&
+                        <div className={`mb-2 col-md-4 text-center alert alert-${msgStatus}`}>
+                            {message}
+                        </div>
+                    }
+                    <div className="card-body">
                         {loading ? 'Loading' :
                             <DataTable
                                 data={rowData}
@@ -117,6 +152,48 @@ class AdminListBody extends React.Component {
                         }
                     </div>
                 </div>
+
+                {/* Delete modal */}
+                <Modal>
+                    <div
+                        className="modal fade"
+                        id="deleteAdminModal"
+                        role="dialog"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div
+                            className="modal-dialog"
+                            role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title">Delete Admin</h5>
+                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">X</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    <p>Are you sure you want to delete?</p>
+                                </div>
+                                <div className="modal-footer">
+                                    <button
+                                        type="button"
+                                        onClick={(e) =>{
+                                            e.preventDefault()
+                                            this.deleteAdmin(this.state.selectedId)
+                                        }}
+                                        className="btn btn-outline-danger">
+                                        Delete
+                                    </button>
+                                    <button type="button"
+                                        className="btn btn-outline-secondary"
+                                        data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
+                {/* delete modal end */}
+
             </div>
 
         )

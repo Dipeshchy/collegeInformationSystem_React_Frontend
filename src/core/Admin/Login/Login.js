@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { connect } from 'react-redux';
 
 import '../../../assets/admin/main.css';
-import { withRouter, Redirect } from 'react-router';
+import { withRouter } from 'react-router';
 import { adminLogin } from '../../../store/actions/admin/loginAction';
 
 class Login extends React.Component {
