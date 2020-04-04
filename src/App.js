@@ -8,8 +8,10 @@ import Dashboard from './core/Admin/Dashboard/Dashboard';
 import AdminList from './core/Admin/AdminList/AdminList';
 import AdminAdd from './core/Admin/AdminList/AdminAdd';
 import "bootstrap/js/dist/modal";
+import UniversityList from './core/Admin/University/UniversityList';
+import UniversityDetail from './core/Admin/University/UniversityDetail';
 
-function App(props) {
+function App() {
   return (
     <Provider store={store}>
       <Router>
@@ -18,6 +20,8 @@ function App(props) {
           <Route exact path="/admin/dashboard" component={Dashboard} />
           <Route exact path="/admin/adminlist" component={AdminList} />
           <Route exact path="/admin/adminlist/add" component={AdminAdd} />
+          <Route exact path="/admin/university" component={UniversityList} />
+          <Route exact path="/admin/university/detail/:id" component={UniversityDetail} />
           <Route component={NotFound} />
         </Switch>
       </Router>
