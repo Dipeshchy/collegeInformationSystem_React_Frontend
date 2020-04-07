@@ -58,7 +58,7 @@ class Login extends React.Component {
                                                                 message: null
                                                             })
                                                             this.props.history.push('admin/dashboard')
-                                                        }, 3000)
+                                                        }, 1000)
                                                     })
 
                                                 } else {

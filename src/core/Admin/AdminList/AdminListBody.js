@@ -96,13 +96,18 @@ class AdminListBody extends React.Component {
             {
                 name: 'Action',
                 cell: row =>
-                    <button
-                        data-toggle="modal"
-                        data-target="#deleteAdminModal"
-                        onClick={() => this.setState({ selectedId: row.id })}
-                        className='btn btn-sm btn-outline-danger'>
-                        Delete
-                    </button>,
+                    <React.Fragment>
+                        {row.id !== JSON.parse(localStorage.getItem('loggedInData')).id &&
+                            <button
+                                data-toggle="modal"
+                                data-target="#deleteAdminModal"
+                                onClick={() => this.setState({ selectedId: row.id })}
+                                className='btn btn-sm btn-outline-danger'>
+                                Delete
+                    </button>
+                        }
+                    </React.Fragment>
+                ,
                 right: true,
             },
         ];
@@ -177,7 +182,7 @@ class AdminListBody extends React.Component {
                                 <div className="modal-footer">
                                     <button
                                         type="button"
-                                        onClick={(e) =>{
+                                        onClick={(e) => {
                                             e.preventDefault()
                                             this.deleteAdmin(this.state.selectedId)
                                         }}
